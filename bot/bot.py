@@ -13,9 +13,16 @@ Run:  uvicorn bot:app --host 0.0.0.0 --port 8080
 
 import logging
 import os
+import sys
 import time
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any, Optional
+
+# Ensure bot directory is in python search path
+_BOT_DIR = Path(__file__).resolve().parent
+if str(_BOT_DIR) not in sys.path:
+    sys.path.insert(0, str(_BOT_DIR))
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, Request
