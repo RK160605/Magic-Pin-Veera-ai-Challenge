@@ -55,13 +55,12 @@ tracker = ConversationTracker()
 _sent_suppression_keys: set[str] = set()
 
 
+from fastapi.responses import RedirectResponse
+
 @app.get("/")
 def read_root():
-    return {
-        "status": "online",
-        "bot": "Vera AI Bot for magicpin Challenge",
-        "docs": "Endpoints available: /v1/healthz, /v1/metadata, /v1/context, /v1/tick, /v1/reply"
-    }
+    return RedirectResponse(url="/docs")
+
 
 @app.get("/v1/healthz")
 async def healthz():
